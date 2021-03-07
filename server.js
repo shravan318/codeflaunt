@@ -6,6 +6,9 @@ connectDB();
 
 app.get("/", (req, res) => res.send("backend running"));
 
+//init bodyparser
+app.use(express.json({ extended: false }));
+
 // Defin Routes
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/auth", require("./routes/api/auth"));
