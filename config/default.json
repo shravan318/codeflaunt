@@ -1,4 +1,6 @@
 {
     "mongoURI":  "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false",
-    "jwtSecret":"secretToken"
+    "jwtSecret":"secretToken",
+    "githubClientId" : "6b6dc1ef636c38c925ce",
+    "githubSecret" : "4cf53253c67c42ba6c5302f8881daff5f38c58a6"
 }
