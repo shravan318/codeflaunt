@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import landingBG from "../img/landingBG.png";
 import { Form, Button, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { setAlert } from "../../actions/alerts";
 import { registerUser } from "../../actions/auth";
 
@@ -28,6 +28,9 @@ const Register = (props) => {
       props.registerUser({ name, email, password });
     }
   };
+  if (props.isAuthenticated) {
+    return <Redirect to="/"></Redirect>;
+  }
   return (
     <Container fluid>
       <div className="row d-flex">
@@ -96,7 +99,7 @@ const Register = (props) => {
             </Form>
             <div className="register mt-5 text-center">
               <p>
-                Alredy a member? <Link to="/">Sign In !</Link>
+                Alredy a member? <Link to="/login">Sign In !</Link>
               </p>
             </div>
           </div>
@@ -109,5 +112,12 @@ const Register = (props) => {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   registerUser: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
-export default connect(null, { setAlert, registerUser })(Register);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+export default connect(mapStateToProps, {
+  setAlert,
+  registerUser,
+})(Register);

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "./login.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { loginUser } from "../../actions/auth";
 
 import landingBG from "../img/landingBG.png";
 import { Form, Button, Container } from "react-bootstrap";
 
-export default function Login() {
+const Login = (props) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,8 +20,13 @@ export default function Login() {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    props.loginUser(email, password);
   };
+  //check for login or not
+
+  if (props.isAuthenticated) {
+    return <Redirect to="/"></Redirect>;
+  }
   return (
     <Container fluid>
       <div className="row d-flex">
@@ -78,4 +86,14 @@ export default function Login() {
       </div>
     </Container>
   );
-}
+};
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);
