@@ -1,10 +1,24 @@
-import React, { Fragment } from "react";
+import React, { useState } from "react";
 import "./login.css";
+import { Link } from "react-router-dom";
 
 import landingBG from "../img/landingBG.png";
-import { Form, Button, Container, Jumbotron } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 
-export default function landing() {
+export default function Login() {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const { email, password } = formData;
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    console.log(formData);
+  };
   return (
     <Container fluid>
       <div className="row d-flex">
@@ -19,30 +33,44 @@ export default function landing() {
             <div className="text-center mb-5">
               <h1 className="logo-title">codeFlaunt</h1>
               <p>
-                Code Flaunt helps you connect and share code with the developers
+                codeFlaunt helps you connect and share code with the developers
                 around the world.
               </p>
             </div>
-            <div className="row px-3">
-              {" "}
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
-            </div>
-            <div className="row px-3">
-              {" "}
-              <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
-            </div>
+            <Form onSubmit={(e) => onSubmit(e)}>
+              <div className="row px-3 mt-3">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  placeholder="Enter email"
+                  type="email"
+                  name="email"
+                  value={email}
+                  onChange={(e) => handleChange(e)}
+                  required
+                />
+              </div>
+              <div className="row px-3 mt-3">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Enter password"
+                  name="password"
+                  value={password}
+                  onChange={(e) => handleChange(e)}
+                  required
+                />
+              </div>
 
-            <div className="row mb-3 px-3 mt-3">
-              {" "}
-              <Button variant="primary" type="submit" block>
-                Login
-              </Button>{" "}
-            </div>
+              <div className="row mb-3 px-3 mt-3">
+                {" "}
+                <Button variant="primary" type="submit" block>
+                  Login
+                </Button>{" "}
+              </div>
+            </Form>
             <div class="register mt-5 text-center">
               <p>
-                Not a member? <a href="#">Create an account</a>
+                Not a member? <Link to="/register">Create an account</Link>
               </p>
             </div>
           </div>
