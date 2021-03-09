@@ -25,7 +25,7 @@ export default function Login() {
         <div className="col-lg-6">
           <div className="row px-3 justify-content-center mt-4 mb-5 border-line">
             {" "}
-            <img src={landingBG} className="BGimage" />{" "}
+            <img src={landingBG} className="BGimage" alt="landingbg" />{" "}
           </div>
         </div>
         <div className="col-lg-6">
@@ -68,7 +68,7 @@ export default function Login() {
                 </Button>{" "}
               </div>
             </Form>
-            <div class="register mt-5 text-center">
+            <div className="register mt-5 text-center">
               <p>
                 Not a member? <Link to="/register">Create an account</Link>
               </p>

@@ -1,15 +1,15 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import "./login.css";
 import PropTypes from "prop-types";
 
 import landingBG from "../img/landingBG.png";
-import { Form, Button, Container, Jumbotron } from "react-bootstrap";
+import { Form, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { setAlert } from "../../actions/alerts";
+import { registerUser } from "../../actions/auth";
 
 const Register = (props) => {
-  console.log(props);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,7 +25,7 @@ const Register = (props) => {
     if (password !== password2) {
       props.setAlert("check passwords, They do not match", "danger");
     } else {
-      console.log(formData);
+      props.registerUser({ name, email, password });
     }
   };
   return (
@@ -34,7 +34,7 @@ const Register = (props) => {
         <div className="col-lg-6">
           <div className="row px-3 justify-content-center mt-4 mb-5 border-line">
             {" "}
-            <img src={landingBG} className="BGimage" />{" "}
+            <img src={landingBG} className="BGimage" alt="landingbg" />{" "}
           </div>
         </div>
         <div className="col-lg-6">
@@ -56,7 +56,6 @@ const Register = (props) => {
                   name="name"
                   value={name}
                   onChange={(e) => handleChange(e)}
-                  required
                 />
               </div>
               <div className="row px-3 mt-3">
@@ -67,7 +66,6 @@ const Register = (props) => {
                   name="email"
                   value={email}
                   onChange={(e) => handleChange(e)}
-                  required
                 />
               </div>
               <div className="row px-3 mt-3">
@@ -78,7 +76,6 @@ const Register = (props) => {
                   name="password"
                   value={password}
                   onChange={(e) => handleChange(e)}
-                  required
                 />
               </div>
               <div className="row px-3 mt-3">
@@ -89,7 +86,6 @@ const Register = (props) => {
                   name="password2"
                   value={password2}
                   onChange={(e) => handleChange(e)}
-                  required
                 />
               </div>
               <div className="row px-3 mt-3">
@@ -98,7 +94,7 @@ const Register = (props) => {
                 </Button>
               </div>
             </Form>
-            <div class="register mt-5 text-center">
+            <div className="register mt-5 text-center">
               <p>
                 Alredy a member? <Link to="/">Sign In !</Link>
               </p>
@@ -112,5 +108,6 @@ const Register = (props) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  registerUser: PropTypes.func.isRequired,
 };
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, registerUser })(Register);
