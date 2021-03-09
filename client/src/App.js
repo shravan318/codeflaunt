@@ -1,14 +1,18 @@
 import { Fragment } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
+// components
 import Nav from "./components/nav/nav";
-import Landing from "./components/landing/landing";
+import Login from "./components/auth/login";
 const App = () => (
-  <Fragment className="container">
-    <Nav />
-    <Landing />
-  </Fragment>
+  <Router>
+    <Fragment className="container">
+      <Nav />
+      <Route exact path="/" component={Login} />
+    </Fragment>
+  </Router>
 );
 
 export default App;
