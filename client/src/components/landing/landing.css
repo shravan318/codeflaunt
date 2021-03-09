@@ -1,0 +1,43 @@
+@media screen and (max-width: 991px) {
+  .image {
+    width: 300px;
+    height: 220px;
+  }
+
+  .border-line {
+    border-right: none;
+  }
+
+  .card2 {
+    border-top: 1px solid #eeeeee !important;
+    margin: 0px 15px;
+  }
+}
+.image {
+  width: auto;
+  max-height: 80%;
+}
+.border-line {
+  border-right: 1px solid #eeeeee;
+}
+.form-center {
+  height: 100%;
+  margin: 1em 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+input,
+textarea {
+  padding: 10px 12px 10px 12px;
+  margin-bottom: 5px;
+  margin-top: 2px;
+  width: 100%;
+}
+.text-sm {
+  font-size: 14px !important;
+}
+.logo-title {
+  font-family: monaco, Consolas, Lucida Console, monospace;
+  text-transform: none;
+}
