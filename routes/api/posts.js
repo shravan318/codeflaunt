@@ -159,4 +159,78 @@ router.put("/unlike/:id", auth, async (req, res) => {
   }
 });
 
+// @route    POST api/posts/:post_id/comment
+// @desc     Create a comment on a post
+// @access   Private
+router.post(
+  "/:post_id/comment",
+  [auth, [check("content", "Text is required").not().isEmpty()]],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+      const user = await User.findById(req.user.id).select("-password");
+      const post = await Post.findById(req.params.post_id);
+
+      const newComment = {
+        content: req.body.content,
+        name: user.name,
+        user: req.user.id,
+      };
+
+      post.comments.unshift(newComment);
+      post.save();
+
+      res.json(post.comments);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send("Server Error");
+    }
+  }
+);
+
+// @route    DELETE api/posts/:post_id/comment/:comment_id
+// @desc     delete a comment on a post
+// @access   Private
+router.delete("/:post_id/comment/:comment_id", [auth], async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.post_id);
+
+    //get comment from post
+
+    const comment = post.comments.find(
+      (eachComment) => eachComment.id == req.params.comment_id
+    );
+    // see if comment is there
+    if (!comment) {
+      return res.status(404).json({ msg: "comment doesn't exist" });
+    }
+    // see if deleter and creator of comment are same
+
+    if (comment.user.toString() !== req.user.id) {
+      return res.status(401).send("user not authorised");
+    }
+
+    const removeIndex = post.comments
+      .map((eachComment) => eachComment.user.toString())
+      .indexOf(req.user.id);
+
+    post.comments.splice(removeIndex, 1);
+
+    await post.save();
+
+    res.json(post.comments);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+// TO DO - APIs
+// 1) like unlike comment
+// 2) edit comment
+
 module.exports = router;
