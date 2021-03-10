@@ -1,0 +1,13 @@
+.profile-header-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-header-section-right h3 {
+  text-transform: lowercase;
+}
+.profile-body-tabs .nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

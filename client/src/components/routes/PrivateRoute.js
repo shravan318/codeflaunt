@@ -33,7 +33,7 @@ const PrivateRoute = ({
         loading ? (
           <CustomSpinner />
         ) : isAuthenticated ? (
-          <Container>
+          <Container className="mt-5">
             <Component {...props} />
           </Container>
         ) : (
