@@ -40,6 +40,9 @@ const PostSchema = new Schema({
       },
     },
   ],
+  // TO-DO
+  // Followers
+  // following
   date: {
     type: Date,
     default: Date.now,

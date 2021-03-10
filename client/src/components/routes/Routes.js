@@ -9,6 +9,7 @@ import { Container } from "react-bootstrap";
 import Wall from "../wall/Wall";
 import Navigation from "../nav/Nav";
 import Notfound from "../notfound/Notfound";
+import Profile from "../profile/Profile";
 
 const Routes = (props) => {
   return (
@@ -21,6 +22,7 @@ const Routes = (props) => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/" component={Wall} />
+        <PrivateRoute exact path="/profile" component={Profile} />
 
         <Route component={Notfound} />
       </Switch>
