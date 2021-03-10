@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Spinner } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import setAuthToken from "../../utils/authToken";
 import { loadUser } from "../../actions/auth";
 import { LOGOUT } from "../../actions/constants";
 import store from "../../store";
+import CustomSpinner from "../spinner/Spinner";
 
 const PrivateRoute = ({
   component: Component,
@@ -30,13 +31,15 @@ const PrivateRoute = ({
       {...rest}
       render={(props) =>
         loading ? (
-          <Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
+          <CustomSpinner />
         ) : isAuthenticated ? (
-          <Component {...props} />
+          <Container>
+            <Component {...props} />
+          </Container>
         ) : (
-          <Redirect to="/login" />
+          <>
+            <Redirect to="/login" />
+          </>
         )
       }
     />
