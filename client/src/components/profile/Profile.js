@@ -69,11 +69,10 @@ const Profile = (props) => {
           <Jumbotron className="text-center">
             <p>Hello, {props.auth.user.name}!</p>
             <h3>Please Create / Finish your profile !</h3>
-            <p>
-              <Link to="/createprofile">
-                <Button>Create Profile</Button>
-              </Link>
-            </p>
+
+            <Link to="/createprofile">
+              <Button className="mt-5">Create Profile</Button>
+            </Link>
           </Jumbotron>
         </Fragment>
       )}
