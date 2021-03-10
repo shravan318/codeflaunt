@@ -1,0 +1,16 @@
+.body-style {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-align-content: center;
+  align-content: center;
+  max-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  font-family: Sans-serif;
+}
+.not-found-text {
+  margin-top: 5em;
+  margin-bottom: 5em;
+}

@@ -6,11 +6,14 @@ import Alerts from "../../components/alert/Alert";
 
 import PrivateRoute from "../routes/PrivateRoute";
 import { Container } from "react-bootstrap";
-import { Wall } from "../wall/Wall";
+import Wall from "../wall/Wall";
+import Navigation from "../nav/Nav";
+import Notfound from "../notfound/Notfound";
 
 const Routes = (props) => {
   return (
     <section>
+      <Navigation />
       <Container fluid>
         <Alerts />
       </Container>
@@ -19,7 +22,7 @@ const Routes = (props) => {
         <Route exact path="/login" component={Login} />
         <PrivateRoute exact path="/" component={Wall} />
 
-        {/* <Route component={NotFound} /> */}
+        <Route component={Notfound} />
       </Switch>
     </section>
   );

@@ -6,16 +6,11 @@ import "./App.css";
 import setAuthToken from "./utils/authToken";
 import { LOGOUT } from "./actions/constants";
 import { loadUser } from "./actions/auth";
-import { Container } from "react-bootstrap";
 //redux
 import { Provider } from "react-redux";
 import store from "./store";
 
 // components
-import Navigation from "./components/nav/Nav";
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import Alerts from "./components/alert/Alert";
 import Routes from "./components/routes/Routes";
 
 if (localStorage.token) {
@@ -39,7 +34,6 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Navigation />
           <Route component={Routes} />
         </Fragment>
       </Router>

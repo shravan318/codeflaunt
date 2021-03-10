@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import Avatar from "react-avatar";
 import logo from "../img/codeflaunt.png";
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Container, Nav, Navbar, NavDropdown, Spinner } from "react-bootstrap";
 import "./nav.css";
 import { Fragment } from "react";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { logout } from "../../actions/auth";
-import auth from "../../reducers/auth";
 
 const Navigation = (props) => {
   return (
@@ -26,7 +25,7 @@ const Navigation = (props) => {
           <Nav className="ml-auto">
             {!props.auth.loading && (
               <Fragment>
-                {props.auth.isAuthenticated && (
+                {props.auth.isAuthenticated && props.auth.user !== null ? (
                   <NavDropdown
                     title={
                       <Fragment className="navbar-dropdown">
@@ -58,6 +57,8 @@ const Navigation = (props) => {
                       Logout
                     </NavDropdown.Item>
                   </NavDropdown>
+                ) : (
+                  <Spinner />
                 )}
               </Fragment>
             )}

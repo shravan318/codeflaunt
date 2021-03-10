@@ -1,9 +1,10 @@
 import React from "react";
 
-export const Wall = () => {
+const Wall = () => {
   return (
     <div>
       <h1>Wall</h1>
     </div>
   );
 };
+export default Wall;

@@ -82,10 +82,10 @@ export const loginUser = (email, password) => async (dispatch) => {
     });
     dispatch(loadUser());
   } catch (err) {
-    const errors = err.response.data.errors;
-
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    if (err.response.data.errors) {
+      err.response.data.errors.forEach((error) =>
+        dispatch(setAlert(error.msg, "danger"))
+      );
     }
 
     dispatch({
