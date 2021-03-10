@@ -28,10 +28,10 @@ const Navigation = (props) => {
                 {props.auth.isAuthenticated && props.auth.user !== null ? (
                   <NavDropdown
                     title={
-                      <Fragment className="navbar-dropdown">
+                      <Fragment>
                         <Avatar
                           name={props.auth.user.name}
-                          maxInitials="2"
+                          maxInitials={2}
                           color="#1a1a1a"
                           fgColor="#ffffff"
                           size="30px"
