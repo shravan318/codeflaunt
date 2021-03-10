@@ -1,3 +1,5 @@
+import { GET_PROFILE, NO_PROFILE } from "../actions/constants";
+
 const initialState = {
   profile: null,
   profiles: [],
@@ -11,7 +13,7 @@ function profileReducer(state = initialState, action) {
     case GET_PROFILE:
       return {
         ...state,
-        profiole: action.payload,
+        profile: action.payload,
         loading: false,
       };
 

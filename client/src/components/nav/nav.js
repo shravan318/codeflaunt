@@ -7,12 +7,18 @@ import { Fragment } from "react";
 import { connect } from "react-redux";
 import { PropTypes } from "prop-types";
 import { logout } from "../../actions/auth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUserCircle,
+  faSlidersH,
+  faSignOutAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Navigation = (props) => {
   return (
     <Container fluid>
       <Navbar expand="lg">
-        <Navbar.Brand href="#">
+        <Navbar.Brand href="/">
           <img
             src={logo}
             height="40"
@@ -45,15 +51,27 @@ const Navigation = (props) => {
                     }
                     id="basic-nav-dropdown"
                   >
-                    <NavDropdown.Item href="#action/3.1">
+                    <NavDropdown.Item href="/profile">
+                      <FontAwesomeIcon
+                        style={{ marginRight: "10px" }}
+                        icon={faUserCircle}
+                      />
                       Profile
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.1">
+                    <NavDropdown.Item href="/settings">
+                      <FontAwesomeIcon
+                        style={{ marginRight: "10px" }}
+                        icon={faSlidersH}
+                      />
                       Settings
                     </NavDropdown.Item>
 
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={props.logout}>
+                      <FontAwesomeIcon
+                        style={{ marginRight: "10px" }}
+                        icon={faSignOutAlt}
+                      />
                       Logout
                     </NavDropdown.Item>
                   </NavDropdown>
