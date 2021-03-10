@@ -1,8 +1,10 @@
 import { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import "./App.css";
 import setAuthToken from "./utils/authToken";
+import { LOGOUT } from "./actions/constants";
 import { loadUser } from "./actions/auth";
 import { Container } from "react-bootstrap";
 //redux
@@ -14,6 +16,7 @@ import Navigation from "./components/nav/Nav";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Alerts from "./components/alert/Alert";
+import Routes from "./components/routes/Routes";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -37,11 +40,7 @@ const App = () => {
       <Router>
         <Fragment>
           <Navigation />
-          <Container fluid>
-            <Alerts />
-          </Container>
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
+          <Route component={Routes} />
         </Fragment>
       </Router>
     </Provider>
