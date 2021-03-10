@@ -101,9 +101,9 @@ router.post(
 
 //@route GET api/profile
 //@desc get all profiles
-//@access public
+//@access private
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
     const profiles = await Profile.find().populate("user", ["name"]);
     res.json(profiles);
@@ -115,9 +115,9 @@ router.get("/", async (req, res) => {
 
 //@route GET api/profile/user/:user_id
 //@desc get profile by user id
-//@access public
+//@access private
 
-router.get("/user/:user_id", async (req, res) => {
+router.get("/user/:user_id", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.params.user_id,
@@ -372,8 +372,8 @@ router.put("/education/:edu_id", auth, async (req, res) => {
 });
 //@route PUT api/profile/github/:username
 //@desc git hub repo
-//@access public
-router.get("/github/:username", (req, res) => {
+//@access private
+router.get("/github/:username", auth, (req, res) => {
   try {
     const options = {
       uri: `https://api.github.com/users/${

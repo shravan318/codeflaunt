@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 // components
-import Nav from "./components/nav/nav";
+import Navigation from "./components/nav/nav";
 import Login from "./components/auth/login";
 import Register from "./components/auth/register";
 import Alerts from "./components/alert/alert";
@@ -27,7 +27,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Nav />
+          <Navigation />
           <Container fluid>
             <Alerts />
           </Container>
