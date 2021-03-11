@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Fragment } from "react";
 import Moment from "react-moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { delEdu } from "../../actions/profile";
 import {
   faPlus,
   faTrash,
@@ -14,6 +15,20 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "react-avatar";
 
 const ViewEdu = (props) => {
+  const [show, setShow] = useState(false);
+  const [id, setId] = useState({
+    id: "",
+  });
+
+  const handleClose = () => {
+    setShow(false);
+    props.delEdu(id);
+  };
+  const handleShow = (edu_id) => {
+    setShow(true);
+    setId(edu_id);
+  };
+
   let history = useHistory();
   const editEdu = () => history.push("/");
   return (
@@ -27,7 +42,7 @@ const ViewEdu = (props) => {
         </h3>
       </div>
       {props.edu.map((edu) => (
-        <div className="m-5">
+        <div key={edu._id} className="m-5">
           <Card className="px-3 py-1">
             <div className="d-flex  justify-content-start align-items-center">
               <Avatar
@@ -63,7 +78,7 @@ const ViewEdu = (props) => {
                         style={{ marginLeft: "2em" }}
                         icon={faTrash}
                         size="sm"
-                        onClick={editEdu}
+                        onClick={() => handleShow(edu._id)}
                       />
                     </Link>
                   </p>
@@ -84,16 +99,37 @@ const ViewEdu = (props) => {
               </Card.Body>
             </div>
           </Card>
+          <>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Delete Experience</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                Woohoo, you're deleting this work experiencel! Are you sure?
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+                <Button variant="danger" onClick={handleClose}>
+                  Delete
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </>
         </div>
       ))}
     </Fragment>
   );
 };
 
-ViewEdu.propTypes = {};
+ViewEdu.propTypes = {
+  edu: PropTypes.array.isRequired,
+  delEdu: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   edu: state.profile.profile.education,
   auth: state.auth,
 });
-export default connect(mapStateToProps)(ViewEdu);
+export default connect(mapStateToProps, { delEdu })(ViewEdu);

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Modal } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Fragment } from "react";
 import Moment from "react-moment";
@@ -12,10 +12,26 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "react-avatar";
+import { delExp } from "../../actions/profile";
 
 const ViewExp = (props) => {
+  const [show, setShow] = useState(false);
+  const [id, setId] = useState({
+    id: "",
+  });
+
+  const handleClose = () => {
+    setShow(false);
+    props.delExp(id);
+  };
+  const handleShow = (exp_id) => {
+    setShow(true);
+    setId(exp_id);
+  };
+
   let history = useHistory();
   const editExp = () => history.push("/");
+
   return (
     <Fragment>
       <div className="d-flex justify-content-between align-items-center">
@@ -27,7 +43,7 @@ const ViewExp = (props) => {
         </h3>
       </div>
       {props.exp.map((exp) => (
-        <div className="m-5">
+        <div key={exp._id} className="m-5">
           <Card className="px-3 py-1">
             <div className="d-flex  justify-content-start align-items-center">
               <Avatar
@@ -49,23 +65,20 @@ const ViewExp = (props) => {
                     {" "}
                     {exp.title} at {exp.company}{" "}
                   </p>
-                  <p className=" float-end">
-                    <Link className="text-muted">
-                      <FontAwesomeIcon
-                        style={{ marginLeft: "2em" }}
-                        icon={faPencilAlt}
-                        size="sm"
-                        onClick={editExp}
-                      />
-                    </Link>
-                    <Link className="text-muted">
-                      <FontAwesomeIcon
-                        style={{ marginLeft: "2em" }}
-                        icon={faTrash}
-                        size="sm"
-                        onClick={editExp}
-                      />
-                    </Link>
+                  <p>
+                    <FontAwesomeIcon
+                      style={{ marginLeft: "2em", cursor: "pointer" }}
+                      icon={faPencilAlt}
+                      size="sm"
+                      onClick={editExp}
+                    />
+
+                    <FontAwesomeIcon
+                      style={{ marginLeft: "2em", cursor: "pointer" }}
+                      icon={faTrash}
+                      size="sm"
+                      onClick={() => handleShow(exp._id)}
+                    />
                   </p>
                 </Card.Title>
                 {!exp.current ? (
@@ -84,16 +97,37 @@ const ViewExp = (props) => {
               </Card.Body>
             </div>
           </Card>
+          <>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Delete Experience</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                Woohoo, you're deleting this work experiencel! Are you sure?
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  Close
+                </Button>
+                <Button variant="danger" onClick={handleClose}>
+                  Delete
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </>
         </div>
       ))}
     </Fragment>
   );
 };
 
-ViewExp.propTypes = {};
+ViewExp.propTypes = {
+  exp: PropTypes.array.isRequired,
+  delExp: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = (state) => ({
   exp: state.profile.profile.experience,
   auth: state.auth,
 });
-export default connect(mapStateToProps)(ViewExp);
+export default connect(mapStateToProps, { delExp })(ViewExp);
