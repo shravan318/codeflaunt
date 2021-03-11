@@ -61,7 +61,7 @@ const ViewExp = (props) => {
                     <Link className="text-muted">
                       <FontAwesomeIcon
                         style={{ marginLeft: "2em" }}
-                        icon={faPencilAlt}
+                        icon={faTrash}
                         size="sm"
                         onClick={editExp}
                       />
@@ -71,7 +71,7 @@ const ViewExp = (props) => {
                 {!exp.current ? (
                   <Card.Subtitle>
                     <Moment format="MMMM DD YYYY">{exp.from}</Moment> to{" "}
-                    <Moment>{exp.to}</Moment>
+                    <Moment format="MMMM DD YYYY">{exp.to}</Moment>
                   </Card.Subtitle>
                 ) : (
                   <Card.Subtitle>
