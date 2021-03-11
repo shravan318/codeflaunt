@@ -52,7 +52,7 @@ const Profile = (props) => {
               </h3>
               <p>{props.profile.profile.bio}</p>
               {props.profile.profile.skills.map((skill) => (
-                <Badge variant="primary" className="mx-1">
+                <Badge key={skill} variant="primary" className="mx-1">
                   {skill}
                 </Badge>
               ))}

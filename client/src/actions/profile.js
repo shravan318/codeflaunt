@@ -24,7 +24,6 @@ export const getCurrentProfile = () => async (dispatch) => {
 export const setProfile = (formData, history, edit = false) => async (
   dispatch
 ) => {
-  console.log("formDataformDataformDataformData", formData);
   try {
     const config = {
       header: {

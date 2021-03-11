@@ -16,7 +16,7 @@ import {
 
 const Navigation = (props) => {
   return (
-    <Fragment fluid>
+    <Fragment>
       <Navbar expand="lg" bg="light">
         <Container fluid>
           <Navbar.Brand href="/">

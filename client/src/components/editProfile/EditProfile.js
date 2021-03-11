@@ -15,7 +15,7 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 
-const EditProfile = (props) => {
+const CreateProfile = (props) => {
   const [formData, setFormData] = useState({
     company: "",
     website: "",
@@ -30,60 +30,6 @@ const EditProfile = (props) => {
     linkedin: "",
     instagram: "",
   });
-
-  useEffect(() => {
-    props.getCurrentProfile();
-    setFormData({
-      company:
-        props.profile.loading || !props.profile.profile.company
-          ? ""
-          : props.profile.profile.company,
-      website:
-        props.profile.loading || !props.profile.profile.website
-          ? ""
-          : props.profile.profile.website,
-      location:
-        props.profile.loading || !props.profile.profile.location
-          ? ""
-          : props.profile.profile.location,
-      position:
-        props.profile.loading || !props.profile.profile.position
-          ? ""
-          : props.profile.profile.position,
-      skills:
-        props.profile.loading || !props.profile.profile.skills
-          ? ""
-          : props.profile.profile.skills,
-      bio:
-        props.profile.loading || !props.profile.profile.bio
-          ? ""
-          : props.profile.profile.bio,
-      githubusername:
-        props.profile.loading || !props.profile.profile.githubusername
-          ? ""
-          : props.profile.profile.githubusername,
-      youtube:
-        props.profile.loading || !props.profile.profile.social
-          ? ""
-          : props.profile.profile.social.youtube,
-      twitter:
-        props.profile.loading || !props.profile.profile.social
-          ? ""
-          : props.profile.profile.social.twitter,
-      facebook:
-        props.profile.loading || !props.profile.profile.social
-          ? ""
-          : props.profile.profile.social.facebook,
-      linkedin:
-        props.profile.loading || !props.profile.profile.social
-          ? ""
-          : props.profile.profile.social.linkedin,
-      instagram:
-        props.profile.loading || !props.profile.profile.social
-          ? ""
-          : props.profile.profile.social.instagram,
-    });
-  }, [props.profile.loading]);
   const {
     company,
     website,
@@ -98,6 +44,59 @@ const EditProfile = (props) => {
     linkedin,
     instagram,
   } = formData;
+  useEffect(() => {
+    props.getCurrentProfile();
+    setFormData({
+      company:
+        props.profile.loading || !props.profile.profile.company
+          ? ""
+          : props.profile.profile.company,
+      position:
+        props.profile.loading || !props.profile.profile.position
+          ? ""
+          : props.profile.profile.position,
+      skills:
+        props.profile.loading || !props.profile.profile.skills.join(",")
+          ? ""
+          : props.profile.profile.skills.join(","),
+      website:
+        props.profile.loading || !props.profile.profile.website
+          ? ""
+          : props.profile.profile.website,
+      location:
+        props.profile.loading || !props.profile.profile.location
+          ? ""
+          : props.profile.profile.location,
+      bio:
+        props.profile.loading || !props.profile.profile.bio
+          ? ""
+          : props.profile.profile.bio,
+      githubusername:
+        props.profile.loading || !props.profile.profile.githubusername
+          ? ""
+          : props.profile.profile.githubusername,
+      youtube:
+        props.profile.loading || !props.profile.profile.youtube
+          ? ""
+          : props.profile.profile.youtube,
+      twitter:
+        props.profile.loading || !props.profile.profile.twitter
+          ? ""
+          : props.profile.profile.twitter,
+      facebook:
+        props.profile.loading || !props.profile.profile.facebook
+          ? ""
+          : props.profile.profile.facebook,
+      linkedin:
+        props.profile.loading || !props.profile.profile.linkedin
+          ? ""
+          : props.profile.profile.linkedin,
+      instagram:
+        props.profile.loading || !props.profile.profile.instagram
+          ? ""
+          : props.profile.profile.instagram,
+    });
+  }, [props.profile.loading]);
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = (e) => {
@@ -325,10 +324,9 @@ const EditProfile = (props) => {
   );
 };
 
-EditProfile.propType = {
+CreateProfile.propType = {
   setProfile: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -336,5 +334,5 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 });
 export default connect(mapStateToProps, { setProfile, getCurrentProfile })(
-  withRouter(EditProfile)
+  withRouter(CreateProfile)
 );
