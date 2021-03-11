@@ -61,7 +61,7 @@ const Profile = (props) => {
             </div>
           </div>
           <div className="profile-body-tabs mt-5">
-            <Tabs defaultActiveKey="Posts">
+            <Tabs defaultActiveKey="Work">
               <Tab eventKey="Posts" title="Posts">
                 dasdasdsad
               </Tab>
@@ -70,9 +70,6 @@ const Profile = (props) => {
               </Tab>
               <Tab eventKey="Work" title="Work">
                 <ViewExp />
-                <Link to="/profile/addexp">
-                  <Button>Add Exp</Button>
-                </Link>
               </Tab>
               <Tab eventKey="Education" title="Education">
                 <ViewEdu />
