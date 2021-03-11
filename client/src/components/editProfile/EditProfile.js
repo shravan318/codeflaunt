@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
-import { setProfile } from "../../actions/profile";
+import { setProfile, getCurrentProfile } from "../../actions/profile";
 import { Link, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
@@ -15,7 +15,7 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 
-const CreateProfile = (props) => {
+const EditProfile = (props) => {
   const [formData, setFormData] = useState({
     company: "",
     website: "",
@@ -30,6 +30,60 @@ const CreateProfile = (props) => {
     linkedin: "",
     instagram: "",
   });
+
+  useEffect(() => {
+    props.getCurrentProfile();
+    setFormData({
+      company:
+        props.profile.loading || !props.profile.profile.company
+          ? ""
+          : props.profile.profile.company,
+      website:
+        props.profile.loading || !props.profile.profile.website
+          ? ""
+          : props.profile.profile.website,
+      location:
+        props.profile.loading || !props.profile.profile.location
+          ? ""
+          : props.profile.profile.location,
+      position:
+        props.profile.loading || !props.profile.profile.position
+          ? ""
+          : props.profile.profile.position,
+      skills:
+        props.profile.loading || !props.profile.profile.skills
+          ? ""
+          : props.profile.profile.skills,
+      bio:
+        props.profile.loading || !props.profile.profile.bio
+          ? ""
+          : props.profile.profile.bio,
+      githubusername:
+        props.profile.loading || !props.profile.profile.githubusername
+          ? ""
+          : props.profile.profile.githubusername,
+      youtube:
+        props.profile.loading || !props.profile.profile.social
+          ? ""
+          : props.profile.profile.social.youtube,
+      twitter:
+        props.profile.loading || !props.profile.profile.social
+          ? ""
+          : props.profile.profile.social.twitter,
+      facebook:
+        props.profile.loading || !props.profile.profile.social
+          ? ""
+          : props.profile.profile.social.facebook,
+      linkedin:
+        props.profile.loading || !props.profile.profile.social
+          ? ""
+          : props.profile.profile.social.linkedin,
+      instagram:
+        props.profile.loading || !props.profile.profile.social
+          ? ""
+          : props.profile.profile.social.instagram,
+    });
+  }, [props.profile.loading]);
   const {
     company,
     website,
@@ -48,7 +102,7 @@ const CreateProfile = (props) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   const onSubmit = (e) => {
     e.preventDefault();
-    props.setProfile(formData, props.history);
+    props.setProfile(formData, props.history, true);
   };
   return (
     <Container>
@@ -271,13 +325,16 @@ const CreateProfile = (props) => {
   );
 };
 
-CreateProfile.propType = {
+EditProfile.propType = {
   setProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  profile: state.profile,
 });
-export default connect(mapStateToProps, { setProfile })(
-  withRouter(CreateProfile)
+export default connect(mapStateToProps, { setProfile, getCurrentProfile })(
+  withRouter(EditProfile)
 );

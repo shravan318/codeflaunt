@@ -14,6 +14,8 @@ import {
 } from "react-bootstrap";
 import "./profile.css";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 
 const Profile = (props) => {
   useEffect(() => {
@@ -38,7 +40,16 @@ const Profile = (props) => {
             />
 
             <div className="profile-header-section-right">
-              <h3>{props.auth.user.name}</h3>
+              <h3>
+                {props.auth.user.name}{" "}
+                <Link className="text-muted" to="/editprofile">
+                  <FontAwesomeIcon
+                    style={{ marginLeft: "2em" }}
+                    icon={faEdit}
+                    size="sm"
+                  />
+                </Link>
+              </h3>
               <p>{props.profile.profile.bio}</p>
               {props.profile.profile.skills.map((skill) => (
                 <Badge variant="primary" className="mx-1">
@@ -48,7 +59,7 @@ const Profile = (props) => {
             </div>
           </div>
           <div className="profile-body-tabs mt-5">
-            <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+            <Tabs defaultActiveKey="Posts">
               <Tab eventKey="Posts" title="Posts">
                 dasdasdsad
               </Tab>
