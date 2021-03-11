@@ -16,6 +16,8 @@ import "./profile.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
+import ViewEdu from "../education/ViewEdu";
+import ViewExp from "../exp/ViewExp";
 
 const Profile = (props) => {
   useEffect(() => {
@@ -66,12 +68,14 @@ const Profile = (props) => {
               <Tab eventKey="Projects" title="Projects">
                 sadasdasdasdasdas
               </Tab>
-              <Tab eventKey="Work Exp" title="Work Exp">
+              <Tab eventKey="Work" title="Work">
+                <ViewExp />
                 <Link to="/profile/addexp">
                   <Button>Add Exp</Button>
                 </Link>
               </Tab>
               <Tab eventKey="Education" title="Education">
+                <ViewEdu />
                 <Link to="/profile/addedu">
                   <Button>Add Education</Button>
                 </Link>

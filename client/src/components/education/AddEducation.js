@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { setEdu } from "../../actions/profile";
 import { Form, Row, Col, Button } from "react-bootstrap";
 
-const Edu = (props) => {
+const AddEdu = (props) => {
   const [formData, setFormData] = useState({
     university: "",
     degree: "",
@@ -153,8 +153,8 @@ const Edu = (props) => {
   );
 };
 
-Edu.propTypes = {
+AddEdu.propTypes = {
   setEdu: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setEdu })(Edu);
+export default connect(null, { setEdu })(AddEdu);

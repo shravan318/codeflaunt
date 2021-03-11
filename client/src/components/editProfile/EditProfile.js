@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
 import { setProfile, getCurrentProfile } from "../../actions/profile";
-import { Link, Redirect, withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import Avatar from "react-avatar";

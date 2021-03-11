@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { setExp } from "../../actions/profile";
 import { Form, Row, Col, Button } from "react-bootstrap";
 
-const Exp = (props) => {
+const AddExp = (props) => {
   const [formData, setFormData] = useState({
     company: "",
     title: "",
@@ -153,8 +153,8 @@ const Exp = (props) => {
   );
 };
 
-Exp.propTypes = {
+AddExp.propTypes = {
   setExp: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setExp })(Exp);
+export default connect(null, { setExp })(AddExp);
