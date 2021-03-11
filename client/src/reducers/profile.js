@@ -1,4 +1,9 @@
-import { CLEAR_PROFILE, GET_PROFILE, NO_PROFILE } from "../actions/constants";
+import {
+  CLEAR_PROFILE,
+  GET_PROFILE,
+  NO_PROFILE,
+  UPDATE_PROFILE,
+} from "../actions/constants";
 
 const initialState = {
   profile: null,
@@ -11,6 +16,7 @@ const initialState = {
 function profileReducer(state = initialState, action) {
   switch (action.type) {
     case GET_PROFILE:
+    case UPDATE_PROFILE:
       return {
         ...state,
         profile: action.payload,

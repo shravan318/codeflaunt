@@ -67,10 +67,14 @@ const Profile = (props) => {
                 sadasdasdasdasdas
               </Tab>
               <Tab eventKey="Work Exp" title="Work Exp">
-                ewqqwqeqwewq
+                <Link to="/profile/addexp">
+                  <Button>Add Exp</Button>
+                </Link>
               </Tab>
               <Tab eventKey="Education" title="Education">
-                ewqqwqeqwewq
+                <Link to="/profile/addedu">
+                  <Button>Add Education</Button>
+                </Link>
               </Tab>
             </Tabs>
           </div>
