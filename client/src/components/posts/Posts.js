@@ -1,7 +1,7 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getPosts } from "../../actions/post";
+import { getPosts, putLikes } from "../../actions/post";
 import { getCurrentProfile } from "../../actions/profile";
 import CustomSpinner from "../spinner/Spinner";
 import { Card, Container } from "react-bootstrap";
@@ -16,7 +16,12 @@ const Posts = (props) => {
     props.getPosts();
     props.getCurrentProfile();
   }, []);
-
+  const handleUnlike = async (postId) => {
+    props.putLikes("unlike", postId);
+  };
+  const handleLike = (postId) => {
+    props.putLikes("like", postId);
+  };
   return props.post.loading ? (
     <CustomSpinner />
   ) : (
@@ -24,7 +29,7 @@ const Posts = (props) => {
       <Container>
         {props.post.posts &&
           props.post.posts.map((post) => (
-            <Card className="my-4 custom-post">
+            <Card key={post._id} className="my-4 custom-post">
               <Card.Body>
                 <Card.Title className="d-flex juistify-content-start align-items-center">
                   <Avatar
@@ -55,11 +60,19 @@ const Posts = (props) => {
                 {post.likes.length > 0 &&
                 post.likes.filter((like) => like.user == props.auth.user) ? (
                   <>
-                    <FontAwesomeIcon icon={faHeart} color="red" />{" "}
+                    <FontAwesomeIcon
+                      icon={faHeart}
+                      color="red"
+                      onClick={() => handleUnlike(post._id)}
+                    />{" "}
                     <span className="text-muted">{post.likes.length}</span>
                   </>
                 ) : (
-                  <FontAwesomeIcon icon={faHeart} color="lightgrey" />
+                  <FontAwesomeIcon
+                    icon={faHeart}
+                    color="lightgrey"
+                    onClick={() => handleLike(post._id)}
+                  />
                 )}
               </Card.Footer>
               {/* <Card.Img variant="top" src="holder.js/100px180"  /> */}
@@ -81,4 +94,8 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile.profile,
 });
-export default connect(mapStateToProps, { getPosts, getCurrentProfile })(Posts);
+export default connect(mapStateToProps, {
+  getPosts,
+  getCurrentProfile,
+  putLikes,
+})(Posts);
