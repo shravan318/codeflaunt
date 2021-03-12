@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Register from "../auth/Register";
 import Login from "../auth/Login";
-import Alerts from "../../components/alert/Alert";
+import Alerts from "../alert/Alert";
 
 import PrivateRoute from "../routes/PrivateRoute";
 import { Container } from "react-bootstrap";
