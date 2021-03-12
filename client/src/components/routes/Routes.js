@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Register from "../auth/Register";
 import Login from "../auth/Login";
-// import CustomAlerts from "../alert/Alert";
+import CustomAlerts from "../alert/Alert";
 
 import PrivateRoute from "../routes/PrivateRoute";
 import { Container } from "react-bootstrap";
@@ -21,7 +21,9 @@ const Routes = (props) => {
   return (
     <section>
       <Navigation />
-      <Container fluid>{/* <CustomAlerts /> */}</Container>
+      <Container fluid>
+        <CustomAlerts />
+      </Container>
       <Switch>
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
