@@ -3,6 +3,8 @@ import {
   GET_PROFILE,
   NO_PROFILE,
   UPDATE_PROFILE,
+  GIT_REPOS,
+  NO_REPOS,
 } from "../actions/constants";
 
 const initialState = {
@@ -36,7 +38,18 @@ function profileReducer(state = initialState, action) {
         repos: [],
         loading: false,
       };
-
+    case GIT_REPOS:
+      return {
+        ...state,
+        repos: action.payload,
+        loading: false,
+      };
+    case NO_REPOS:
+      return {
+        ...state,
+        repos: [],
+        loading: false,
+      };
     default:
       return state;
   }

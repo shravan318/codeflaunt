@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getCurrentProfile } from "../../actions/profile";
+import { getCurrentProfile, getRepo } from "../../actions/profile";
 import PropTypes from "prop-types";
 import { Fragment } from "react";
 import Avatar from "react-avatar";
@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import ViewEdu from "../education/ViewEdu";
 import ViewExp from "../exp/ViewExp";
+import Repos from "../repos/Repos";
 
 const Profile = (props) => {
   useEffect(() => {
@@ -61,12 +62,14 @@ const Profile = (props) => {
             </div>
           </div>
           <div className="profile-body-tabs mt-5">
-            <Tabs defaultActiveKey="Education">
+            <Tabs defaultActiveKey="Projects">
               <Tab eventKey="Posts" title="Posts">
                 dasdasdsad
               </Tab>
               <Tab eventKey="Projects" title="Projects">
-                sadasdasdasdasdas
+                {props.profile.profile.githubusername && (
+                  <Repos username={props.profile.profile.githubusername} />
+                )}
               </Tab>
               <Tab eventKey="Work" title="Work">
                 <ViewExp />
@@ -103,4 +106,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
 });
-export default connect(mapStateToProps, { getCurrentProfile })(Profile);
+export default connect(mapStateToProps, { getCurrentProfile, getRepo })(
+  Profile
+);

@@ -6,6 +6,8 @@ import {
   UPDATE_PROFILE,
   CLEAR_PROFILE,
   DELETE_PROFILE,
+  GIT_REPOS,
+  NO_REPOS,
 } from "../actions/constants";
 
 export const getCurrentProfile = () => async (dispatch) => {
@@ -196,6 +198,26 @@ export const delAcc = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: NO_PROFILE,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+//gitrepo
+
+export const getRepo = (username) => async (dispatch) => {
+  try {
+    console.log(
+      "props.profile.githubusernameprops.profile.githubusername",
+      username
+    );
+    const res = await axios.get(`/api/profile/github/${username}`);
+    dispatch({
+      type: GIT_REPOS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: NO_REPOS,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }

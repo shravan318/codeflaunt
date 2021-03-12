@@ -11,4 +11,6 @@ export const CLEAR_PROFILE = "CLEAR_PROFILE";
 export const NO_PROFILE = "NO_PROFILE";
 export const UPDATE_PROFILE = "UPDATE_PROFILE";
 export const DELETE_PROFILE = "DELETE_PROFILE";
+export const GIT_REPOS = "GIT_REPOS";
+export const NO_REPOS = "NO_REPOS";
 export const LOGOUT = "LOGOUT";
