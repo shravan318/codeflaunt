@@ -15,6 +15,7 @@ import EditProfile from "../editProfile/EditProfile";
 import AddEducation from "../education/AddEducation";
 import AddExp from "../exp/AddExp";
 import Settings from "../settings/Settings";
+import CreatePost from "../createpost/CreatePost";
 
 const Routes = (props) => {
   return (
@@ -34,6 +35,7 @@ const Routes = (props) => {
         <PrivateRoute exact path="/profile/addexp" component={AddExp} />
         <PrivateRoute exact path="/settings" component={Settings} />
         <PrivateRoute exact path="/profile/:id" component={Profile} />
+        <PrivateRoute exact path="/post/new" component={CreatePost} />
 
         <Route component={Notfound} />
       </Switch>

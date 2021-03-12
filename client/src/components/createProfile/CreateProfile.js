@@ -271,7 +271,7 @@ const CreateProfile = (props) => {
   );
 };
 
-CreateProfile.propType = {
+CreateProfile.propTypes = {
   setProfile: PropTypes.func.isRequired,
 };
 

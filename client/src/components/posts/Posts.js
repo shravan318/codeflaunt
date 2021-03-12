@@ -8,7 +8,12 @@ import { Button, Card, Container, Modal } from "react-bootstrap";
 import Avatar from "react-avatar";
 import Moment from "react-moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faComment, faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faComment,
+  faHeart,
+  faPlus,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 import "./posts.css";
 import { Link } from "react-router-dom";
 
@@ -45,6 +50,13 @@ const Posts = (props) => {
   ) : (
     <Fragment>
       <Container>
+        <div className="d-flex justify-content-between align-items-center">
+          <h3>Latest Posts</h3>
+          <Link to="/post/new">
+            <FontAwesomeIcon icon={faPlus} color="" className="mr-3" />
+            <span>add a new post</span>
+          </Link>
+        </div>
         {props.post.posts &&
           props.post.posts.map((post) => (
             <Card key={post._id} className="my-4 custom-post">
@@ -72,7 +84,9 @@ const Posts = (props) => {
                     </Card.Subtitle>
                   </div>
                 </Card.Title>
-                <Card.Text>{post.content}</Card.Text>
+                <Card.Text>
+                  <div dangerouslySetInnerHTML={{ __html: post.content }} />
+                </Card.Text>
               </Card.Body>
               <Card.Footer>
                 {post.likes.length > 0 &&

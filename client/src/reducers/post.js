@@ -3,6 +3,7 @@ import {
   POST_ERROR,
   UPDATE_LIKES,
   DELETE_POST,
+  ADD_POST,
 } from "../actions/constants";
 
 const initialState = {
@@ -18,6 +19,12 @@ function postReducer(state = initialState, action) {
       return {
         ...state,
         posts: action.payload,
+        loading: false,
+      };
+    case ADD_POST:
+      return {
+        ...state,
+        posts: [action.payload, ...state.posts],
         loading: false,
       };
     case POST_ERROR:
