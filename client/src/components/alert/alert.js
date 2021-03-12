@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Alert } from "react-bootstrap";
 
-const CustomAlerts = ({ alerts }) =>
+const Alerts = ({ alerts }) =>
   alerts !== null &&
   alerts.length > 0 &&
   alerts.map((alert) => (
@@ -19,4 +19,4 @@ Alerts.propTypes = {
 const mapStateToProps = (state) => ({
   alerts: state.alert,
 });
-export default connect(mapStateToProps)(CustomAlerts);
+export default connect(mapStateToProps)(Alerts);
