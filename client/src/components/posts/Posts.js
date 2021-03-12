@@ -10,6 +10,7 @@ import Moment from "react-moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faComment, faHeart, faTrash } from "@fortawesome/free-solid-svg-icons";
 import "./posts.css";
+import { Link } from "react-router-dom";
 
 const Posts = (props) => {
   const [show, setShow] = useState(false);
@@ -61,7 +62,7 @@ const Posts = (props) => {
                     }}
                   />
                   <div>
-                    {post.name}
+                    <Link to={`/profile/${post.user}`}> {post.name}</Link>
                     <Card.Subtitle className="mt-1">
                       {props.profile && props.profile.position} at{" "}
                       {props.profile && props.profile.company}

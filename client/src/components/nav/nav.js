@@ -52,7 +52,9 @@ const Navigation = (props) => {
                       }
                       id="basic-nav-dropdown"
                     >
-                      <NavDropdown.Item href="/profile">
+                      <NavDropdown.Item
+                        href={`/profile/${props.auth.user._id}`}
+                      >
                         <FontAwesomeIcon
                           style={{ marginRight: "10px" }}
                           icon={faUserCircle}

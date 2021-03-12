@@ -33,6 +33,7 @@ const Routes = (props) => {
         <PrivateRoute exact path="/profile/addedu" component={AddEducation} />
         <PrivateRoute exact path="/profile/addexp" component={AddExp} />
         <PrivateRoute exact path="/settings" component={Settings} />
+        <PrivateRoute exact path="/profile/:id" component={Profile} />
 
         <Route component={Notfound} />
       </Switch>

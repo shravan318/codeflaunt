@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getCurrentProfile, getRepo } from "../../actions/profile";
+import {
+  getCurrentProfile,
+  getRepo,
+  getProfileById,
+} from "../../actions/profile";
 import PropTypes from "prop-types";
 import { Fragment } from "react";
 import Avatar from "react-avatar";
@@ -22,7 +26,7 @@ import Repos from "../repos/Repos";
 
 const Profile = (props) => {
   useEffect(() => {
-    props.getCurrentProfile();
+    props.getProfileById(props.match.params.id);
   }, []);
   return (
     <div>
@@ -30,7 +34,7 @@ const Profile = (props) => {
         <Container>
           <div className="profile-header-section">
             <Avatar
-              name={props.auth.user.name}
+              name={props.profile.profile.user.name}
               maxInitials={2}
               color="#1a1a1a"
               fgColor="#ffffff"
@@ -38,13 +42,13 @@ const Profile = (props) => {
               round="50%"
               textSizeRatio={2}
               style={{
-                width: "20%",
+                width: "15%",
               }}
             />
 
             <div className="profile-header-section-right">
               <h3>
-                {props.auth.user.name}{" "}
+                {props.profile.profile.user.name}{" "}
                 <Link className="text-muted" to="/editprofile">
                   <FontAwesomeIcon
                     style={{ marginLeft: "2em" }}
@@ -100,12 +104,15 @@ Profile.protoType = {
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
+  getProfileById: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile,
 });
-export default connect(mapStateToProps, { getCurrentProfile, getRepo })(
-  Profile
-);
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  getRepo,
+  getProfileById,
+})(Profile);

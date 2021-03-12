@@ -27,6 +27,24 @@ export const getCurrentProfile = () => async (dispatch) => {
     });
   }
 };
+
+export const getProfileById = (id) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/profile/user/${id}`);
+    dispatch({
+      type: GET_PROFILE,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: NO_PROFILE,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status,
+      },
+    });
+  }
+};
 //\ create profile / update profile
 
 export const setProfile = (formData, history, edit = false) => async (
