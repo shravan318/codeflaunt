@@ -22,6 +22,9 @@ const ViewExp = (props) => {
 
   const handleClose = () => {
     setShow(false);
+  };
+  const handleDelete = () => {
+    setShow(false);
     props.delExp(id);
   };
   const handleShow = (exp_id) => {
@@ -109,7 +112,7 @@ const ViewExp = (props) => {
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="danger" onClick={handleClose}>
+                <Button variant="danger" onClick={handleDelete}>
                   Delete
                 </Button>
               </Modal.Footer>

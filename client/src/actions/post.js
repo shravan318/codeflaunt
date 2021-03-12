@@ -1,7 +1,6 @@
 import axios from "axios";
-import { bindActionCreators } from "redux";
 import { setAlert } from "./alerts";
-import { GET_POSTS, GET_PROFILE, POST_ERROR, UPDATE_LIKES } from "./constants";
+import { GET_POSTS, POST_ERROR, UPDATE_LIKES, DELETE_POST } from "./constants";
 
 export const getPosts = () => async (dispatch) => {
   try {
@@ -33,6 +32,26 @@ export const putLikes = (todoType, id) => async (dispatch) => {
         likes: res.data,
       },
     });
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: {
+        msg: err.response.statusText,
+        status: err.response.status,
+      },
+    });
+  }
+};
+
+//delete post
+export const delPost = (id) => async (dispatch) => {
+  try {
+    await axios.delete(`/api/posts/${id}`);
+    dispatch({
+      type: DELETE_POST,
+      payload: id,
+    });
+    dispatch(setAlert("post removed", "success"));
   } catch (err) {
     dispatch({
       type: POST_ERROR,

@@ -62,7 +62,7 @@ const Profile = (props) => {
             </div>
           </div>
           <div className="profile-body-tabs mt-5">
-            <Tabs defaultActiveKey="Projects">
+            <Tabs defaultActiveKey="Posts">
               <Tab eventKey="Posts" title="Posts">
                 dasdasdsad
               </Tab>

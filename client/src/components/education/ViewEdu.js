@@ -22,13 +22,14 @@ const ViewEdu = (props) => {
 
   const handleClose = () => {
     setShow(false);
-    props.delEdu(id);
   };
   const handleShow = (edu_id) => {
     setShow(true);
     setId(edu_id);
   };
-
+  const handleDelete = (id) => {
+    props.delEdu(id);
+  };
   let history = useHistory();
   const editEdu = () => history.push("/");
   return (
@@ -102,16 +103,16 @@ const ViewEdu = (props) => {
           <>
             <Modal show={show} onHide={handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>Delete Experience</Modal.Title>
+                <Modal.Title>Delete Educatioun</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                Woohoo, you're deleting this work experiencel! Are you sure?
+                Woohoo, you're deleting education details! Are you sure?
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                   Close
                 </Button>
-                <Button variant="danger" onClick={handleClose}>
+                <Button variant="danger" onClick={handleDelete}>
                   Delete
                 </Button>
               </Modal.Footer>
