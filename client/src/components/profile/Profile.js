@@ -23,6 +23,7 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import ViewEdu from "../education/ViewEdu";
 import ViewExp from "../exp/ViewExp";
 import Repos from "../repos/Repos";
+import Posts from "./Posts";
 
 const Profile = (props) => {
   useEffect(() => {
@@ -68,7 +69,9 @@ const Profile = (props) => {
           <div className="profile-body-tabs mt-5">
             <Tabs defaultActiveKey="Posts">
               <Tab eventKey="Posts" title="Posts">
-                dasdasdsad
+                <div className="mt-3">
+                  <Posts userid={props.match.params.id} />
+                </div>
               </Tab>
               <Tab eventKey="Projects" title="Projects">
                 {props.profile.profile.githubusername && (

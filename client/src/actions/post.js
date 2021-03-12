@@ -6,6 +6,7 @@ import {
   UPDATE_LIKES,
   DELETE_POST,
   ADD_POST,
+  GET_POST_BY_USER,
 } from "./constants";
 
 export const getPosts = () => async (dispatch) => {
@@ -84,6 +85,25 @@ export const addPost = (content) => async (dispatch) => {
     });
 
     dispatch(setAlert("Post Created", "success"));
+  } catch (err) {
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+//post by one user
+export const getPostsbyUser = (userid) => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/posts/${userid}`);
+
+    dispatch({
+      type: GET_POST_BY_USER,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Post Fetched", "success"));
   } catch (err) {
     dispatch({
       type: POST_ERROR,
