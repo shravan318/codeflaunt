@@ -13,8 +13,9 @@ const { check, validationResult } = require("express-validator/check");
 // @access   Private
 router.post(
   "/",
-  [auth, [check("content", "Text is required").not().isEmpty()]],
+  [auth, [check("content", "content is required").not().isEmpty()]],
   async (req, res) => {
+    console.log("req.body.content", req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });

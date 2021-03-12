@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Register from "../auth/Register";
 import Login from "../auth/Login";
-import Alerts from "../alert/Alert";
+import CustomAlerts from "../alert/Alert";
 
 import PrivateRoute from "../routes/PrivateRoute";
 import { Container } from "react-bootstrap";
@@ -22,7 +22,7 @@ const Routes = (props) => {
     <section>
       <Navigation />
       <Container fluid>
-        <Alerts />
+        <CustomAlerts />
       </Container>
       <Switch>
         <Route exact path="/register" component={Register} />
