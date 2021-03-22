@@ -1,0 +1,23 @@
+[{
+  "_id": {
+    "$oid": "60459325f22ef694f795627e"
+  },
+  "name": "shravan",
+  "email": "shravan.318@gmail.com",
+  "password": "$2a$10$ZISlyD2Ngcl7M1hG/..vKeaWg/2JEbpFYREQ6gJK9NhDat3fkc8ia",
+  "date": {
+    "$date": "2021-03-08T02:59:49.218Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "604b2a19773eaa43cd11d1de"
+  },
+  "name": "shravan1",
+  "email": "shravan.3181@gmail.com",
+  "password": "$2a$10$Zbl8OBRLCF2HMT3/gUaq0e93F7zjScX17rvojUpOusbRA.Yr1xh/i",
+  "date": {
+    "$date": "2021-03-12T08:45:13.868Z"
+  },
+  "__v": 0
+}]

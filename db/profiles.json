@@ -1,0 +1,125 @@
+[{
+  "_id": {
+    "$oid": "6045bd4cb0e63a2a29f0b8fa"
+  },
+  "skills": [
+    "JS",
+    "ReactJS",
+    "MongoDB",
+    "Express",
+    "HTML",
+    "CSS",
+    "Bootstrap"
+  ],
+  "user": {
+    "$oid": "60459325f22ef694f795627e"
+  },
+  "company": "abc tech pvt ltd",
+  "location": "Bangalore",
+  "position": "UI Developer",
+  "bio": "UI UX designer and Developer",
+  "githubusername": "shravan318",
+  "social": {},
+  "experience": [
+    {
+      "current": true,
+      "_id": {
+        "$oid": "6045dc407f83f61183cd2658"
+      },
+      "title": "senio systems engineer",
+      "company": "abc pvt ltd",
+      "location": "chennai, TN",
+      "from": {
+        "$date": "2018-10-11T18:30:00Z"
+      },
+      "description": "Create new products according to the market trends "
+    },
+    {
+      "current": true,
+      "_id": {
+        "$oid": "6045d76f594a8e868a3c220b"
+      },
+      "title": "senior systems engineer",
+      "company": "abc pvt ltd",
+      "location": "chennai, TN",
+      "from": {
+        "$date": "2018-10-11T18:30:00Z"
+      },
+      "description": "Create new products according to the market trends "
+    }
+  ],
+  "education": [
+    {
+      "current": false,
+      "_id": {
+        "$oid": "604a050250fe0c1223813612"
+      },
+      "university": "SRM university",
+      "degree": "Btech",
+      "fieldofstudy": "CS",
+      "from": {
+        "$date": "2014-12-01T00:00:00Z"
+      },
+      "to": {
+        "$date": "2018-04-01T00:00:00Z"
+      },
+      "description": "computer science"
+    },
+    {
+      "current": false,
+      "_id": {
+        "$oid": "6045dfabf2f5d71e721d0ed0"
+      },
+      "university": "Delhi University",
+      "degree": "B.Sc.",
+      "fieldofstudy": "computer science",
+      "from": {
+        "$date": "2013-10-11T18:30:00Z"
+      },
+      "to": {
+        "$date": "2016-10-11T18:30:00Z"
+      },
+      "description": "Write crap code "
+    }
+  ],
+  "date": {
+    "$date": "2021-03-08T05:59:40.600Z"
+  },
+  "__v": 10,
+  "website": "www.google.com"
+},{
+  "_id": {
+    "$oid": "604b2a2b773eaa43cd11d1df"
+  },
+  "skills": [
+    "asddas"
+  ],
+  "user": {
+    "$oid": "604b2a19773eaa43cd11d1de"
+  },
+  "company": "dsaas",
+  "website": "dsds",
+  "location": "saasd",
+  "position": "asdsad",
+  "experience": [],
+  "education": [
+    {
+      "current": true,
+      "_id": {
+        "$oid": "604b2caa027bc24fb5d4fc49"
+      },
+      "university": "sadsads",
+      "degree": "addasd",
+      "fieldofstudy": "asdasd",
+      "from": {
+        "$date": "2021-02-22T00:00:00Z"
+      },
+      "to": null,
+      "description": "adsad"
+    }
+  ],
+  "date": {
+    "$date": "2021-03-12T08:45:31.293Z"
+  },
+  "__v": 7
+}]
